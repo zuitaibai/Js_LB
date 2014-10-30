@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;}
+.table{border:4px solid #ccc;padding:20px 50px;}
+    .s{border:1px solid #f00;}
+</style>
+<script src="../_js/jquery.1.8.3.min.js"></script>
+<script src="zjfarea.js"></script>
+<script>
+$(function(){
+    //zjfarea($('#aa'));
+    //zjfarea();
+   false&& console.log(1),console.log(2),console.log(3),console.log(4);
+
+});
+</script>
+</head>
+
+<body style="margin:100px;">
+＝＝＝＝＝＝select 原生
+<div class="table">
+<table width="100%" border="0">
+    <tr>
+        <td width="200">使用data-元素属性：</td>
+        <td><select name="" data-selecttype="a" data-select=""></select></td>
+        <td>
+            <select name="" data-selectgroup="group1" data-selecttype="a" data-select="" id="s"></select>
+            <select name="" data-selectgroup="group1" data-selecttype="b" data-select=""></select>
+            <select name="" data-selectgroup="group1" data-selecttype="c" data-select=""></select>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>使用js控参：</td>
+        <td><select name="" id="aa"></select></td>
+        <td>
+            <select name="" id="bb_1"></select>
+            <select name="" id="bb_2"></select>
+            <select name="" id="bb_3"></select>
+        </td>
+        <td></td>
+    </tr>
+</table>
+</div>
+<br><br><br>
+<div class="table">
+<table>
+    <tr>
+        <td width="200">单select：</td>
+        <td>&emsp;市：<select name="" data-selecttype="c" data-select="{isStep:河北省,isStep2:张家口市,eq0text:false}"></select>&emsp;&emsp;&emsp; </td>
+        <td>&emsp;省：<select name="" data-selecttype="b" data-select="{isStep:河北省}"></select>&emsp;&emsp;&emsp; </td>
+        <td>&emsp;全国：<select name="" data-selecttype="a" data-select="{eq0text:false}"></select>&emsp;&emsp;&emsp;</td>
+        <td>&emsp;全国2：<select name="" data-selecttype="a" data-select=""></select></td>
+    </tr>
+</table>
+</div>
+<br><br><br>
+
+＝＝＝＝＝＝select 模拟
+    <div class="table">
+<table width="100%" border="0">
+    <tr>
+        <td width="200">使用data-元素属性：</td>
+        <td><select name="" data-selecttype="a" data-select="" data-selectskin=""/></select></td>
+        <td>
+            <select name="" data-selectgroup="group3" data-selecttype="a" data-selectskin="" data-select=""/></select>
+            <select name="" data-selectgroup="group3" data-selecttype="b" data-selectskin="" data-select=""/></select>
+            <select name="" data-selectgroup="group3" data-selecttype="c" data-selectskin="" data-select=""/></select>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>使用js控参：</td>
+        <td><select name="" data-selecttype="a" data-select="" data-selectskin=""/></select></td>
+        <td>
+            <select name="" data-selectgroup="group4" data-selecttype="a" data-selectskin="" data-select=""/></select>
+            <select name="" data-selectgroup="group4" data-selecttype="b" data-selectskin="" data-select=""/></select>
+            <select name="" data-selectgroup="group4" data-selecttype="c" data-selectskin="" data-select=""/></select>
+        </td>
+        <td></td>
+    </tr>
+</table>
+    </div>
+<br><br><br><br><br><br>
+
+＝＝＝＝＝＝input 模拟
+        <div class="table">
+<table width="100%" border="0">
+    <tr>
+        <td width="200">使用data-元素属性：</td>
+        <td><input name="" data-selecttype="a" data-select=""/></td>
+        <td>
+            <input name="" data-selectgroup="group5" data-selecttype="a" data-selectskin="{}" data-select=""/>
+            <input name="" data-selectgroup="group5" data-selecttype="b" data-selectskin="{}" data-select=""/>
+            <input name="" data-selectgroup="group5" data-selecttype="c" data-selectskin="{}" data-select=""/>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>使用js控参：</td>
+        <td><input name="" data-selecttype="a" data-select=""/></td>
+        <td>
+            <input name="" data-selectgroup="group6" data-selecttype="a" data-selectskin="{}" data-select=""/>
+            <input name="" data-selectgroup="group6" data-selecttype="b" data-selectskin="{}" data-select=""/>
+            <input name="" data-selectgroup="group6" data-selecttype="c" data-selectskin="{}" data-select=""/>
+        </td>
+        <td></td>
+    </tr>
+</table>
+        </div>
+</body>
+</html>

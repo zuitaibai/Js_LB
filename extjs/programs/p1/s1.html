@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<!--<link rel="stylesheet" href="extJs4/resources/css/ext-all.css"/>-->
+<link rel="stylesheet" href="extJs4/resources/css/ext-all-neptune.css"/>
+<script src="extJs4/bootstrap.js"></script>
+<script src="extJs4/locale/ext-lang-zh_CN.js"></script>
+<script>
+Ext.onReady(function(){
+    Ext.define('Person',{
+        Name:'',
+        Age:0,
+        Say:function(msg){Ext.Msg.alert(this.Name+' Says:',msg);},
+        constructor:function(name,age){
+            this.Name=name;
+            this.Age=age;
+        }
+    });
+    var Tom=new Person('Tom',26);
+
+    var win = Ext.create("Ext.window.Window", {
+        title: '示例窗口',
+        width: 300,
+        height: 200
+    });
+    win.show();
+
+    var w=$(window).width(), h=$(window).height();
+    var bb=w+h;
+    alert(bb);
+
+});
+</script>
+</head>
+
+<body>
+sdf
+</body>
+</html>

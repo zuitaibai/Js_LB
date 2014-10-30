@@ -1,0 +1,18 @@
+.zjf-china3city{position:relative;display:inline-block;*display:inline;*zoom:1;cursor:default;width:200px;line-height:24px;vertical-align:middle;}
+.zjf-china3city p{border:1px solid #ccc;overflow:hidden;zoom:1;padding-left:6px;height:24px;}
+.zjf-china3city p em{font-style:normal;float:right;width:0;height:0;overflow:hidden;border:6px solid #0d66a3;border-bottom-width:0;border-left-color:#fff;border-right-color:#fff;margin:9px 5px 0 0;}
+.zjf-china3city p em.open{border-top-width:0;border-bottom-width:6px;}
+.zjf-china3city p.hover{border-color:#0d66a3;}
+.zjf-china3city p.hover em{border-top-color:#00f;}
+.zjf-china3city p.hover em.open{border-bottom-color:#00f;}
+.zjf-china3city div{width:100%;position:absolute;top:26px;left:0;display:none;border-bottom:1px solid #ccc;}
+.zjf-china3city ul{border:1px solid #ccc;border-top:none;border-bottom:none;list-style:none;padding:5px 2px 3px;background:#fff;}
+.zjf-china3city ul li{padding:0 4px;}
+.zjf-china3city ul li.cur{background:#0d66a3;color:#fff;font-weight:bold;}
+.zjf-china3city ul li.cur:after{content:' √';}
+.china3cityDisabled p{background:#efefef;color:#999;}
+.china3cityDisabled p em{border-color:#858e99;border-left-color:#efefef;border-right-color:#efefef;}
+.china3cityDisabled p em.open{border-top-width:6px;border-bottom-width:0;}
+.china3cityDisabled p.hover{border-color:#ccc;}
+.china3cityDisabled p.hover em{border-top-color:#858e99;}
+.china3cityDisabled div{display:none;}

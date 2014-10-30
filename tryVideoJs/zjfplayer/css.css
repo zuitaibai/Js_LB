@@ -1,0 +1,70 @@
+*{margin:0;padding:0;}
+body{font:12px/1.5 arial,"\5b8b\4f53";color:#000;padding:100px;}
+ul{list-style:none;}
+img{border:0;}
+a{text-decoration:none;color:#fff;}
+
+.my-warp{padding:10px;background:#000;color:#fff;display:inline-block;}
+.my-warp2{background:none;padding:0;position:relative;border:5px solid #f00;}
+.my-cons{border:3px solid #ccc;position:relative;/*font-size:0;*/height:337px;width:600px;}
+.my-cons2{height:251px;border:0;}
+.zMedia-poster{position:absolute;left:0;top:0;width:100%;height:100%;text-align:center;vertical-align:middle;line-height:337px;font-size:0;}
+.my-cons2 .zMedia-poster{line-height:251px;}
+.zMedia-overlay{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.7);}
+.zMedia-overlayapha{background:rgba(0,0,0,0);}
+.zMedia-poster img{max-width:600px;max-height:337px;vertical-align:middle;}
+.my-cons2 .zMedia-poster img{max-height:251px;}
+.my-cons video{width:100%;height:100%;}
+.zMedia-play2{position:absolute;left:50%;top:50%;margin:-50px 0 0 -56px;width:112px;height:100px;background:url(../zjfplayer/img/play.png) no-repeat;}
+.zMedia-play2:hover{background-position:0 -100px;}
+.my-infos{line-height:40px;height:40px;overflow:hidden;text-align:center;}
+
+.my-btns{vertical-align:middle;background:#fff;padding:10px 10px 5px;border-radius:8px;box-shadow:2px 2px 4px #ccc,-2px -2px 4px #ccc,-2px 2px 4px #ccc,2px -2px 4px #ccc;border:5px solid #eee;}
+.my-btns2{padding:0;border-radius:0;box-shadow:none;border:none;background:none;position:absolute;bottom:0;left:0;width:100%;}
+.zMedia-contolWarp{background:rgba(255,255,255,.4);}
+.my-btns a{display:inline-block;vertical-align:middle;}
+.zMedia-prev{width:28px;height:28px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -112px;}
+.zMedia-prev:hover{background-position:-29px -112px;}
+.zMedia-next{width:28px;height:28px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -141px;}
+.zMedia-next:hover{background-position:-29px -141px;}
+.zMedia-stop{width:28px;height:28px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -83px;}
+.zMedia-stop:hover{background-position:-29px -83px;}
+.zMedia-play{width:40px;height:40px;background:url(../zjfplayer/img/s.jpg) no-repeat;}
+.zMedia-play:hover{background-position:-41px 0;}
+.zMedia-pause{width:40px;height:40px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -42px;}
+.zMedia-pause:hover{background-position:-41px -42px;}
+.zMedia-unmute{width:19px;height:15px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -170px;}
+.zMedia-unmute:hover{background-position:-19px -170px;}
+.zMedia-mute{width:19px;height:16px;background:url(../zjfplayer/img/s.jpg) no-repeat -60px -169px;}
+.zMedia-mute:hover{background-position:-79px -169px;}
+.zMedia-vmax{width:18px;height:15px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -186px;}
+.zMedia-vmax:hover{background-position:-19px -186px;}
+.zMedia-shuffle{width:25px;height:18px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -270px;}
+.zMedia-shuffle:hover{background-position:-30px -270px;}
+.zMedia-shuffleoff{width:25px;height:18px;background:url(../zjfplayer/img/s.jpg) no-repeat -60px -270px;}
+.zMedia-shuffleoff:hover{background-position:-90px -270px;}
+.zMedia-repeat{width:25px;height:18px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -290px;}
+.zMedia-repeat:hover{background-position:-30px -290px;}
+.zMedia-repeatoff{width:25px;height:18px;background:url(../zjfplayer/img/s.jpg) no-repeat -60px -290px;}
+.zMedia-repeatoff:hover{background-position:-90px -290px;}
+.zMedia-fullscreen{width:25px;height:18px;background:url(../zjfplayer/img/s.jpg) no-repeat 0 -310px;}
+.zMedia-fullscreen:hover{background-position:-30px -310px;}
+.zMedia-restorescreen{width:25px;height:18px;background:url(../zjfplayer/img/s.jpg) no-repeat -60px -310px;}
+.zMedia-restorescreen:hover{background-position:-90px -310px;}
+.zMedia-seekbar,.zMedia-seekbar2{background:#ccc;height:14px;cursor:pointer;float:left;width:500px;}
+.zMedia-seekbar2{background:rgba(0,0,0,.3);}
+.myss{float:right;line-height:14px;color:#000;}
+.zMedia-seekbar:hover{background:#bbb;}
+.zMedia-seekbarValue,.zMedia-seekbarValue2{height:100%;background:#000;width:0;position:relative;opacity:.8;}
+.zMedia-seekbarValue2{opacity:.5;}
+.zMedia-seekbar:hover .zMedia-seekbarValue{opacity:1;}
+
+.zMedia-seekbarValue-txt{position:absolute;right:-17px;font-size:10px;background:url(../zjfplayer/img/ico.png);color:#fff;text-align:center;top:-10px;width:37px;height:18px;}
+.zMedia-vbar{background:#ccc;height:8px;overflow:hidden;cursor:pointer;width:50px;display:inline-block;font-size:0;vertical-align:text-bottom;}
+.zMedia-vbar2{width:120px;}
+.zMedia-vbar:hover{background:#bbb;}
+.zMedia-vbarValue{height:100%;background:#000;width:0;display:inline-block;opacity:.8;}
+.zMedia-vbar:hover .zMedia-vbarValue{opacity:1;}
+
+.zMedia-vbar-vertical{height:80px;width:10px;position:absolute;right:50px;bottom:0;}
+.zMedia-vbar-vertical .zMedia-vbarValue{height:0;width:100%;position:absolute;left:0;bottom:0;}

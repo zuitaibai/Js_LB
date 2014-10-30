@@ -1,0 +1,18 @@
+.zjf-asSelect{position:relative;display:inline-block;*display:inline;*zoom:1;cursor:default;width:200px;line-height:24px;vertical-align:middle;}
+.zjf-asSelect p{border:1px solid #ccc;overflow:hidden;zoom:1;padding-left:6px;height:24px;}
+.zjf-asSelect p em{font-style:normal;float:right;width:0;height:0;overflow:hidden;border:6px solid #0d66a3;border-bottom-width:0;border-left-color:#fff;border-right-color:#fff;margin:9px 5px 0 0;}
+.zjf-asSelect p em.open{border-top-width:0;border-bottom-width:6px;}
+.zjf-asSelect p.hover{border-color:#0d66a3;}
+.zjf-asSelect p.hover em{border-top-color:#00f;}
+.zjf-asSelect p.hover em.open{border-bottom-color:#00f;}
+.zjf-asSelect div{width:100%;position:absolute;top:26px;left:0;display:none;border-bottom:1px solid #ccc;}
+.zjf-asSelect ul{border:1px solid #ccc;border-top:none;border-bottom:none;list-style:none;padding:5px 2px 3px;background:#fff;}
+.zjf-asSelect ul li{padding:0 4px;}
+.zjf-asSelect ul li.cur{background:#0d66a3;color:#fff;font-weight:bold;}
+.zjf-asSelect ul li.cur:after{content:' √';}
+.asSelectDisabled p{background:#efefef;color:#999;}
+.asSelectDisabled p em{border-color:#858e99;border-left-color:#efefef;border-right-color:#efefef;}
+.asSelectDisabled p em.open{border-top-width:6px;border-bottom-width:0;}
+.asSelectDisabled p.hover{border-color:#ccc;}
+.asSelectDisabled p.hover em{border-top-color:#858e99;}
+.asSelectDisabled div{display:none;}

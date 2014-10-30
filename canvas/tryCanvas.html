@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas height="400" width="400" id="c" style="border:10px solid #000;"></canvas>
+<script type="text/javascript">
+var cxt=document.getElementById('c').getContext('2d');
+cxt.fillStyle="#f00";
+
+d(0.55,1.86);
+var timer=null;
+function d(s,e){
+	var a=b=s;
+	timer=setTimeout(function(){
+		b=a+0.01;
+		if(b>=e){ draw(a,e); clearTimeout(timer);return; }
+		draw(a,b);
+		a+=0.01;
+		timer=setTimeout(arguments.callee,20);
+	},20);
+}
+
+
+function draw(s,e){
+	cxt.globalCompositeOperation="source-over";
+	cxt.beginPath();
+	cxt.moveTo(200,200);
+	cxt.arc(200,200,200,s*Math.PI,e*Math.PI);
+	cxt.fill();
+	cxt.save();
+	cxt.globalCompositeOperation="destination-out";
+	cxt.beginPath();
+	cxt.moveTo(200,200);
+	cxt.arc(200,200,100,s*Math.PI,2*Math.PI);
+	cxt.fill();
+	cxt.save();
+}
+</script>
+</body>
+</html>

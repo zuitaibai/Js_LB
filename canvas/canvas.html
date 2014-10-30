@@ -1,0 +1,64 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="zh-CN" class="no-js lt-ie9  lt-ie8  lt-ie7"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="zh-CN" class="no-js lt-ie9  lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="zh-CN" class="no-js lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="zh-CN" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="zh-CN" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>无标题文档</title>
+    <script src="../_js/Modernizr.2.8.3.min.js"></script>
+    <style>#canvas,#canvas2{width:600px;height:600px;border:2px solid #f00;margin-bottom:10px;}</style>
+</head>
+
+<body>
+<canvas id="canvas"></canvas>
+
+<canvas id="canvas2"></canvas>
+<script>
+var canvas=document.getElementById('canvas'), context=canvas.getContext('2d');
+context.translate(75,75);
+for(var i=1;i<6;i++){
+    context.save();
+    context.fillStyle='rgb('+51*i+','+(255-51*i)+',255)';
+    for(var j=0;j<i*6;j++){
+        context.rotate(Math.PI*2/(i*6));
+        context.beginPath();
+        context.arc(0,i*12.5,5,0,Math.PI*2,true);
+        context.fill();
+    }
+    context.restore();
+}
+
+var canvas2=document.getElementById('canvas2'), context2=canvas2.getContext('2d');
+function drawSpirograph(ctx,R,r,O){
+    var x1=R-O, y1=0, i=1;
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    do{
+        if(i>20000) break;
+        var x2=(R+r)*Math.cos(i*Math.PI/72)-(r+O)*Math.cos(((R+r)/r)*(i*Math.PI/72));
+        var y2=(R+r)*Math.sin(i*Math.PI/72)-(r+O)*Math.sin(((R+r)/r)*(i*Math.PI/72));
+        ctx.lineTo(x2,y2);
+        y1=x2;
+        y1=y2;
+        i++;
+    }while(x2!=R-O&&y2!=0);
+    ctx.stroke();
+}
+context2.fillRect(0,0,300,300);
+for(var i=0;i<3;i++){
+    for(var j=0;i<3;j++){
+        context2.save();
+        context2.strokeStyle='#fcff00';
+        context2.translate(50+j*100,50+i*100);
+        drawSpirograph(context2,20*(j+2)/(j+1),-8*(i+3)/(i+1),10);
+        context2.restore();
+
+    }
+}
+</script>
+</body>
+</html>

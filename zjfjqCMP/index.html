@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;}body{font-size:12px;}.h5{padding:5px 0;font-weight:bold;font-size:16px;margin-top:20px;color:red;}.h5 span{font-size:14px;font-weight:normal;color:black;}
+
+#ul1,#ul2{overflow:hidden;zoom:1;list-style:none;}
+#ul1 li,#ul2 li{float:left;border:1px solid #000;padding:5px 15px;margin-right:-1px;}
+.divs{padding:10px;text-align:center;width:200px;border:1px solid #00f;}
+.divs2{float:left;background:#ccc;border:1px solid #000;margin-right:10px;line-height:1.5;}
+.showforjs{padding:0 100px;}
+.activeforjs{background:#ccc;}
+.activeforjs2{background:#f00;}
+</style>
+<script src="../_js/jquery.1.8.3.min.js"></script>
+<script src="js/zjfCmp/jquery.zjfcmp.js"></script>
+<script>
+function tabCallBack($tab,$con,eq){console.log($tab);console.log($con);console.log(eq);}
+function tabCallBack2($tab,$con,eq){console.log($tab);console.log($con);console.log(eq);}
+function asSelectCallBack(val,txt,eq,valOld,txtOld,eqOld){console.log('val='+val+',txt='+txt+',eq='+eq+',valOld='+valOld+',txtOld='+txtOld+',eqOld='+eqOld);}
+
+
+zjf.requirejs.config({baseUrl:'js/zjfCmp'});
+/*tabs*/
+zjf.require(['tabs'],function(tabs){
+    tabs({tabsSelectStr:'#ul1 li',contentSelectStr:'.divs',activeClass:'activeforjs',initIndex:2,callback:tabCallBack});
+    //tabs({tabsSelectStr:'#ul2 li',contentSelectStr:'.divs2',activeClass:'activeforjs2',toggleStr:'showforjs',eventType:'click',initIndex:0,callback:tabCallBack});
+});
+/*asSelect*/
+zjf.require(['asSelect'],function(asSelect){
+    asSelect($('#select1'),{width:100,disabled:'true'});
+    var bbb=zjf.global.asSelect['zjf-asSelect_2'];
+    $('#button3').click(function(){
+        bbb.disabled(false);
+    });
+    var ss=zjf.global.asSelect['bbbi'];
+    var bbss=[['3','333'],['4','444'],['5','555'],['6','666'],['7','777'],['8','888']], s=0;
+    $('#button4').click(function(){
+        ss.addItem(bbss[s][0],bbss[s][1]);
+        s++;
+    });
+    $('#button5').click(function(){
+        ss.removeItem(bbss[2][0]);
+    });
+});
+/*china3city*/
+zjf.require(['china3city'],function(china3city){
+    china3city();
+});
+</script>
+</head>
+
+<body style="margin:100px;">
+
+<p style="line-height:1.5;font-size:14px;color:#666;">除第三方组件外，默认均为无图纯css样式（或跟本就不参与css），便于自定...<br>
+    组件自动按需加载...<br>
+    每一组插件的更多功能，等待着您的挖掘（不想挖掘可直接问我（工程完了我会提供详细的api））...<br>
+    下版计划：更改bug、建立组件风格规范、优化代码逻辑、规范代码并提供压缩版本...</p>
+<h5 class="h5">滑动门</h5>
+<ul id="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<div class="divs">111</div>
+<div class="divs">222</div>
+<div class="divs">333</div>
+<ul id="ul2" data-tabs="{tabsSelectStr:this>li,contentSelectStr:.divs2,activeClass:activeforjs2,toggleStr:showforjs,eventType:click,initIndex:0,callback:tabCallBack2}" style="margin-top:5px;">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<div class="divs2">111</div>
+<div class="divs2">222</div>
+<div class="divs2">333</div>
+<div style="clear:both;"></div>
+
+<h5 class="h5">下拉菜单<span>（真实的select的option也同步，提交表单不用另行加工）（为select赋值时第二参数传入true可触发onchange）</span></h5>
+<select name="" id="select1">
+    <option value="1">1111</option>
+    <option value="2">2222</option>
+    <option value="3">3333</option>
+</select>
+<select id="sdf" name="" data-asselect="{width:100,eventType:hover,onChange:asSelectCallBack,forId:bbbi}">
+
+    <option value="0">000</option>
+    <option value="1">111</option>
+    <option value="2" selected>222</option>
+</select>
+<input id="button1" type="button" value="点我为select赋值2并禁用"/>
+<input id="button2" type="button" value="点我从select取值"/>
+<input id="button3" type="button" value="点我为select解禁"/>
+<input id="button4" type="button" value="添加一项"/>
+<input id="button5" type="button" value="删除value=3的项"/>
+
+<h5 class="h5">三级联动</h5>
+<select id="s1"><option value="0">--请选择--</option></select>
+<select id="s2"><option value="0">--请选择--</option></select>
+<select id="s3"><option value="0">--请选择--</option></select>
+</body>
+</html>

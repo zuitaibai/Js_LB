@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<!--<link rel="stylesheet" href="extJs4/resources/css/ext-all.css"/>-->
+<link rel="stylesheet" href="extJs4/resources/css/ext-all-neptune.css"/>
+<script src="extJs4/bootstrap.js"></script>
+<script src="extJs4/locale/ext-lang-zh_CN.js"></script>
+<script>
+/*Ext.onReady(function(){
+    Ext.create('Ext.container.Viewport',{
+        layout:'border',
+        items:[
+            Ext.create('Ext.panel.Panel',{
+                html :'北',
+                height: 80,
+                border: false,
+                region: 'north'
+            }),
+            Ext.create('Ext.panel.Panel',{
+                html:'西',
+                width:180,
+                collapsible:true,
+                split:true,
+                region:'west'
+            }),
+            Ext.create('Ext.panel.Panel',{
+                html:'东',
+                width:200,
+                collapsible:true,
+                region:'east'
+            }),
+            Ext.create('Ext.panel.Panel',{
+                html:'南',
+                height:100,
+                border:false,
+                region:'south'
+            }),
+            Ext.create('Ext.panel.Panel',{
+                html:'中',
+                bordyStyle:'border-width:1px 0 1px 0',
+                region:'center'
+            })
+        ]
+    });
+    var win = new Ext.Window({ title: "Hello", width: 300, height: 200, html: '<h1>Hello Easy ExtJS Open Source Window</h1>' });
+    win.show();
+    Ext.MessageBox.alert('sdf','sdf');
+});*/
+
+
+///http://blog.51cto.com/zt/557
+
+
+
+/////////////////////////////////////////////////////ExtJS4.2学习(一)Ext自定义类
+
+//1、创建一个新类
+//demo 01
+Ext.define('demo.Demo',{
+    name:'ThinkDiary',
+    hello:function(){return 'Hello'+this.name;}
+});
+//demo 02
+Ext.define('demo.DemoWindow',{
+    extends:'Ext.Window',
+    title:'demo hello',
+    initComponent:function(){ //初始化
+        Ext.apply(this,{//将一批属性复制给当前对象
+            items:[{html:'panel1'},{html:'panel2'}]
+        });
+        this.callParent();//快捷调用父类函数
+    },
+    mixins:['demo.Demo'], //多重继承
+    config:{ title:'demo' },//辅助功能属性
+    statics:{TYPE_DEFAULT:0},//定义静态成员
+    constructor:function(){ //自定义初始化构造函数，先执行此再执行initComponet
+        //do something init
+    }
+});
+//我们在外部可以这样调用new demo.DemoWindow();
+//这样更倾向于面向对面的思想了，这正是4.2的新特性之一，下面来个例子：
+/* Start ExtJS 中自定义类 **/
+Ext.define("Person", {
+    Name:'',
+    Age:0,
+    Say:function (msg) {
+        Ext.Msg.alert(this.Name + " Says:", msg);
+    },
+    constructor: function (name, age) {
+        this.Name = name;
+        this.Age = age;
+    }
+});
+Ext.onReady(function(){
+    var Tom = new Person("束洋洋", 22);
+    //Tom.Say("你好，ExtJs4.2");
+});
+
+
+/////////////////////////////////////////////////////ExtJS4.2学习(二)Ext统一组件模型
+
+/*学而不思则罔，思而不学则殆。虽然Ext组件拥有几乎完美的对象继承模型，但是这毕竟属于底层架构的一部分，我们日常开发时候接触最多的还是各种组件与布局，通过组件、布局的各种组合最终才形成了功能强劲的应用，所以有必要首先对Ext的组件模型有所了解。
+Ext中所有的可视组件都继承自Ext.component，这种单根继承的模型保证所有组件都拥有相同的通用方法与生命周期，这样在后续对这些组件进行维护管理时将更加便捷，同时也保证了在进行布局时的便利。
+组件最常见的几项功能包含initComponent()、render()、show()和hide()，无论是哪一种组件都是通过初始化、渲染、显示、隐藏来实现其整个生命周期的。
+作为基类Ext.Component本身不包含任何格式，我们需要在使用时为它指定渲染的HTML内容，通过HTML参数传入。*/
+/* Start ExtJS 中自定义类 **/
+//整体生命周期为：初始化、渲染、显示、隐藏
+/*Ext.onReady(function(){
+ var box = new Ext.Panel({
+ el: 'test',
+ title:'测试标题',
+ floating:true,
+ draggable:true,
+ html:'测试内容',
+ pageX:100,
+ pageY:50,
+ width:200,
+ height:150
+ });
+ box.render();
+ });*/
+Ext.onReady(function(){
+    var box = new Ext.Component({
+        el: 'test',
+        style:'background-color:red;position:absoulte',
+        pageX:100,
+        pageY:50,
+        width:200,
+        height:150
+    });
+    box.render();
+});
+/* END ExtJS 中自定义类 **/
+
+
+/////////////////////////////////////////////////////ExtJS4.2学习(三)Grid表格
+/*
+ Ext中的表格功能非常强大，包括排序、缓存、拖动、隐藏某一列、自动显示行号、列汇总、单元格编辑等实用功能。表格由类Ext.grid.GridPanel定义，继承自Ext.Panel，其xtype为grid。在EXT中，表格控件必须包含列定义信息，并指定表格的数据存储器。表格数据最起码有列、数据、转换原始数据这3项。列信息由数组columns定义，表格的数据存储器由Ext.data.Store来定义。store负责把各种各样（如二维数组、JSON对象数组、XML文本等）的原始数据转换成Ext.data.Record类型的对象。通过Ext.data.ArrayStore我们可以把任何格式的数据转化成表格可以使用的形式，这样就不需要为每种数据格式写一个对应的实现了。
+ 制作一个简单的表格及属性说明*/
+//表格数据最起码有列、数据、转换原始数据这3项
+Ext.onReady(function(){
+    //定义列
+    var columns = [
+        {header:'编号',dataIndex:'id'}, //sortable:true 可设置是否为该列进行排序
+        {header:'名称',dataIndex:'name'},
+        {header:'描述',dataIndex:'descn'}
+    ];
+    //定义数据
+    var data =[
+        ['1','张三','描述01'],
+        ['2','李四','描述02'],
+        ['3','王五','描述03'],
+        ['4','束洋洋','思考者日记网'],
+        ['5','高飞','描述05']
+    ];
+    //转换原始数据为EXT可以显示的数据
+    var store = new Ext.data.ArrayStore({
+        data:data,
+        fields:[
+            {name:'id'}, //mapping:0 这样的可以指定列显示的位置，0代表第1列，可以随意设置列显示的位置
+            {name:'name'},
+            {name:'descn'}
+        ]
+    });
+    //加载数据
+    store.load();
+
+    //创建表格
+    var grid = new Ext.grid.GridPanel({
+        renderTo:'grid', //渲染位置
+        store:store, //转换后的数据
+        columns:columns, //显示列
+        stripeRows:true, //斑马线效果
+        //enableColumnMove: false, //禁止拖放列
+        //enableColumnResize: false, //禁止改变列宽度
+        loadMask:true, //显示遮罩和提示功能,即加载Loading……
+        forceFit:true //自动填满表格
+    });
+});
+
+
+/////////////////////////////////////////////////////ExtJS4.2学习(四)Grid表格中文排序问题
+/*
+ 我们在表格中指定某列排序的时候，我发现排序的时候，中文并没有很好的按照规律排序，国际上都使用ASCII码进行排序，而我们却拼音排序，Ext自动排好的中文在我们看起来是一团糟。
+
+ 如下代码数据：
+ var data =[
+ ['1','啊','描述01'],
+ ['2','波','描述02'],
+ ['3','呲','描述03'],
+ ['4','嘚','描述04'],
+ ['5','咯','描述05']
+ ];
+ 为了立刻看到效果，我们通过sorters属性来为Ext.data.ArrayStore设置一个默认的排序方式，如下面的代码：
+ var store = new Ext.data.ArrayStore({
+ data:data,
+ fields:[
+ {name:'id'}, //mapping:0 这样的可以指定列显示的位置，0代表第1列，可以随意设置列显示的位置
+ {name:'name'},
+ {name:'descn'}
+ ],
+ sorters:[{property:"name",direction:"ASC"}] //给定一个默认的排序方式
+ });
+ 效果就是下面这样：
+ 解决办法如下代码，你可以把这段代码放到ext-all.js文件的最后，或者放到HTML页面的最上面，总之要在Ext初始化之后，实际代码调用之前执行。
+ Ext.data.Store.prototype.createComparator = function(sorters){
+ return function(r1, r2){
+ var s = sorters[0], f=s.property;
+ var v1 = r1.data[f], v2 = r2.data[f];
+
+ var result = 0;
+ if(typeof(v1) == "string"){
+ result = v1.localeCompare(v2);
+ if(s.direction == 'DESC'){
+ result *=-1;
+ }
+ } else {
+ result =sorters[0].sort(r1, r2);
+ }
+
+ var length = sorters.length;
+
+ for(var i = 1; i<length; i ++){
+ s = sorters[i];
+ f = s.property;
+ v1 = r1.data[f];
+ v2 = r2.data[f];
+ if(typeof(v1) == "string"){
+ result = result || v1.localeCompare(v2);
+ if(s.direction == 'DESC'){
+ result *=-1;
+ }
+ } else {
+ result = result || s.sort.call(this, r1, r2);
+ }
+ }
+ return result;
+ };
+ };*/
+
+
+/////////////////////////////////////////////////////ExtJS4.2学习(五)表格渲染与复选框
+/*
+ 前几章做的例子，你有没有发现太单调啦？呵呵，相信聪明的你一定知道，光显示文字，那这功能太弱爆了吧，现在我们来看下ExtJs给我们带来的表格渲染和复选框等功能。
+ 有的人问我了，为什么你们的默认表格样式和我做的效果图不一样呢，呵呵，那是因为我引入了ExtJS4.2的其他样式，并非默认的样式，换样式很简单，只需要更改Link引入的文件就可以很轻松的换各种样式，哇~是不是很给力啊，你敢信？
+ 好了，不扯远了，下面看这章要做的效果图：
+ 怎么样，是不是很丰富？
+ 先来说文字的颜色怎么变吧，详细你学过HTML+CSS一定知道怎么变，同理，在EXTJS里只需要用到renderer即可轻松做成HTML的效果，看下面的代码：
+ {header:'状态',dataIndex:'status',width:80,renderer:function(value){
+ if(value=='可用'){
+ return "<span style='color:green;font-weight:bold';>可用</span><img src='images/right.gif' />";
+ } else {
+ return "<span style='color:red;font-weight:bold';>禁用</span><img src='images/wrong.gif' />";
+ }
+ }}
+ 只需要在columns定义的时候将列的返回值更改为HTML即可。
+ 名称列的颜色值变色也是同样的方法，这里为了方便，我就自定义了一个方法，在renderer里引入即可，如下代码：
+ //改变列颜色自定义renderner方法
+ function renderMotif(data, cell, record, rowIndex, columnIndex, store){
+ var value = record.get('name');
+ cell.style="background-color:"+value;
+ return data;
+ }
+ 列中引用：
+ {header:'名称',dataIndex:'name',width:80, renderer:renderMotif},
+ 那上面的查询详细信息是什么呢？看下图：
+ 弹出这个单元格里的详细信息，主要代码如下：
+ //自定义renderner方法
+ function renderDescn(value, cellmeta, record, rowIndex, columnIndex, store){
+ var str="<input type='button' value='查询详细信息'
+ "这个单元格的值是："+value +"n"+
+ "这个单元格的配置是:{cellId:"+cellmeta.cellId+",id:"+cellmeta.id+",css:"+cellmeta.css+"}n"+
+ "这个单元格对应行的record是："+record +",一行的数据都在里面n"+
+ "这是第"+rowIndex+"行n"+
+ "这是第"+columnIndex +"列n"+
+ "这个表格对应的Ext.data.Store在这里:"+ store +",随便用吧。"+"")' />";
+ return str;
+ }
+ 列定义：
+ {header:'描述',dataIndex:'descn',width:112,renderer:renderDescn}
+ 我们可以在渲染函数里得到多个参数，如下所示：
+ value：将要显示到单元格里的值；
+ cellmeta：单元格的相关属性，主要有id和CSS；
+ record：这行的数据对象，如果需要获取其他列的值，可以通过record.data["id"]的方式得到，这个属性很重要，我们经常会用到；
+ rowIndex：行号，这里的行号指的是当前页中所有记录的顺序；
+ columnIndex：当前列的列号；
+ store：构造表格时传递的ds。表格里的所有数据都可以通过store获得。
+
+ 自动显示行号和复选框都是renderer的延伸。先来说自动显示行号，在列模型columns中加入RowNumber对象即可，如下代码：
+ new Ext.grid.RowNumberer(), //自动显示行号
+ 同样，复选框还是要修改columns模型加入SelectionModel对象：
+ //加入复选框组件，{checkOnly:true}会解决在操作中不慎选中了某一行就会变成选中一行的情况，只允许用户通过复选框执行选中
+ var sm = new Ext.selection.CheckboxModel({checkOnly:true});
+ //创建表格
+ var grid = new Ext.grid.GridPanel({
+ renderTo:'grid', //渲染位置
+ width:550,
+ height:250,
+ selModel:sm,
+ store:store, //转换后的数据
+ columns:columns, //显示列
+ stripeRows:true, //斑马线效果
+ //enableColumnMove: false, //禁止拖放列
+ //enableColumnResize: false, //禁止改变列宽度
+ loadMask:true //显示遮罩和提示功能,即加载Loading……
+ //forceFit:true //自动填满表格
+ });
+ 注：{checkOnly:true}会解决在操作中不慎选中了某一行就会变成选中一行的情况，只允许用户通过复选框执行选中。
+ 下面给出完整示例代码，代码中还说到了Ext.grid.GridView，大家注意看下。
+ */
+//表格数据最起码有列、数据、转换原始数据这3项
+Ext.onReady(function(){
+    //定义列
+    var columns = [
+        new Ext.grid.RowNumberer(), //显示行号
+        {header:'编号',dataIndex:'id',width:50}, //sortable:true 可设置是否为该列进行排序
+        {header:'名称',dataIndex:'name',width:80},
+        {header:'描述',dataIndex:'descn',width:112},
+        {header:'状态',dataIndex:'status',width:80,renderer:function(value){
+            if(value=='可用'){
+                return "<span style='color:green;font-weight:bold';>可用</span><img src='images/right.gif' />";
+            } else {
+                return "<span style='color:red;font-weight:bold';>禁用</span><img src='images/wrong.gif' />";
+            }
+        }}
+    ];
+    //定义数据
+    var data =[
+        ['1','小王','描述01','可用'],
+        ['2','李四','描述02','禁用'],
+        ['3','张三','描述03','可用'],
+        ['4','束洋洋','思考者日记网','可用'],
+        ['5','高飞','描述05','禁用']
+    ];
+    //转换原始数据为EXT可以显示的数据
+    var store = new Ext.data.ArrayStore({
+        data:data,
+        fields:[
+            {name:'id'}, //mapping:0 这样的可以指定列显示的位置，0代表第1列，可以随意设置列显示的位置
+            {name:'name'},
+            {name:'descn'},
+            {name:'status'}
+        ]
+    });
+    //加载数据
+    store.load();
+    //表格控件默认使用RowModel，按住shift或者ctrl键单击鼠标就可以选择多行，如果希望只选择一行，可以使用singleSelect:true
+    //我发现我在写的时候，不用的情况下，我试了发现默认就是不可多选的
+    //var sm = new Ext.grid.RowModel({singleSelect:true});
+    //创建表格
+    var sm = new Ext.selection.CheckboxModel({checkOnly:true});
+    var grid = new Ext.grid.GridPanel({
+        renderTo:'grid2', //渲染位置
+        width:450,
+        height:150,
+        selModel:sm,
+        store:store, //转换后的数据
+        columns:columns, //显示列
+        stripeRows:true, //斑马线效果
+        //enableColumnMove: false, //禁止拖放列
+        //enableColumnResize: false, //禁止改变列宽度
+        loadMask:true, //显示遮罩和提示功能,即加载Loading……
+        //forceFit:true //自动填满表格
+        viewConfig:{
+            columnsText:'显示的列',
+            scrollOffset:30, //表格右侧为滚动条预留的宽度,默认为20
+            sortAscText:'正序',
+            sortDescText:'倒序',
+            forceFit:true //表格会自动延展每列的长度，使内容填满整个表格
+        }
+    });
+});
+</script>
+</head>
+
+<body>
+<div id="test"></div>
+<div id="grid"></div>
+<div id="grid2"></div>
+</body>
+</html>
